@@ -20,7 +20,7 @@ CommandBox> bookmark list
 
 ```
 
-CommandBox> bookmark add '{name}' _['{path}']_
+CommandBox> bookmark add '{name}' **'{path}']**
 CommandBox> bookmark add 'Home'
 ```
 
