@@ -20,19 +20,21 @@ CommandBox> bookmark list
 
 ```
 
-CommandBox> bookmark add '{name}' **'{path}']**
+CommandBox> bookmark add name <path>
 CommandBox> bookmark add 'Home'
 ```
 
 ## Delete bookmark - *delete an existing bookmark*
 
 ```
-CommandBox> bookmark delete _['{name}']_ _['{path}']_
+CommandBox> bookmark delete <name> <path>
+CommandBox> bookmark delete 'Home'
 ```
 
 ## Goto bookmark - *go to a bookmarked path*
 
 ```
-CommandBox> bookmark goto '{name}'
-CommandBox> goto {'name'}
+CommandBox> bookmark goto name
+CommandBox> goto name
+CommandBox> goto 'Home'
 ```
