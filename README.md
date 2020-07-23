@@ -1,6 +1,6 @@
 # Bookmarks for CommandBox
 
-Bookmarks allows you to bookmark directories for easy navigation. 
+Bookmarks allow you to bookmark directories for easy navigation. 
 
 ## Installation:
 
@@ -10,13 +10,13 @@ Install bookmarks using commandbox:
 CommandBox> install commandbox-bookmarks
 ```
 
-## List bookmarks - list existing bookmarks
+## List bookmarks - *list existing bookmarks*
 
 ```
 CommandBox> bookmark list
 ```
 
-## Add bookmark - add a new bookmark
+## Add bookmark - *add a new bookmark*
 
 ```
 
@@ -24,13 +24,13 @@ CommandBox> bookmark add '{name}' _['{path}']_
 CommandBox> bookmark add 'Home'
 ```
 
-## Delete bookmark - delete an existing bookmark
+## Delete bookmark - *delete an existing bookmark*
 
 ```
 CommandBox> bookmark delete _['{name}']_ _['{path}']_
 ```
 
-## Goto bookmark - go to a bookmarked path
+## Goto bookmark - *go to a bookmarked path*
 
 ```
 CommandBox> bookmark goto '{name}'
