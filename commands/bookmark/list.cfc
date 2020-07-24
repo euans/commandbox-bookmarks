@@ -19,16 +19,23 @@ component {
  				valueLen = max(valueLen,bookmarks[k].len());
  			}
 
- 			print.line(repeatString('-', labelLen + valueLen + 7));
+ 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
  			count = 0;
  			for ( i in bookmarks ) {
  				count++;
- 				print.line('| ' & i & repeatString(' ', labelLen-i.len()) & ' : ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()) & ' |');
+ 				print
+ 					.yellowText('| ')
+ 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
+ 					.yellowText(':')
+ 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
+ 					.yellowText(' |')
+ 					.line();
+ 				
  				//if ( count < bookmarks.len() ) {
- 				//	print.line('| ' & repeatString(chr(183), labelLen + valueLen + 3) & ' |');
+ 				//	print.yellowLine('| ' & repeatString(chr(183), labelLen + valueLen + 3) & ' |');
  				//}
  			};
- 			print.line(repeatString('-', labelLen + valueLen + 7));
+ 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
  		}		
 	}
 }

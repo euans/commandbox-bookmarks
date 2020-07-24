@@ -7,6 +7,7 @@ component {
 		bookmarks = configSettings.modules['commandbox-bookmarks'].bookmarks;
  		
  		arguments.path = arguments.path?:getCWD();
+		arguments.name = arguments.name?:listLast(arguments.path, '\/');
 
  		if ( !isNull(arguments.name) ) {
  			structDelete(bookmarks, trim(arguments.name));
