@@ -19,7 +19,6 @@ CommandBox> bookmark list
 ## Add bookmark - *add a new bookmark*
 
 ```
-
 CommandBox> bookmark add name <path>
 CommandBox> bookmark add 'Home'
 ```
