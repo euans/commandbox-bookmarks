@@ -11,7 +11,7 @@
     ],
     "location":"euans/commandbox-bookmarks#v0.1.0",
     "name":"bookmarks",
-    "private": true,
+    "private":true,
     "repository":{
         "type":"git",
         "URL":"https://github.com/euans/commandbox-bookmarks"
@@ -19,5 +19,5 @@
     "shortDescription":"A CommandBox module that allow for directoy bookmarking.",
     "slug":"commandbox-bookmarks@aeuans",
     "type":"commandbox-modules",
-    "version":"0.1.0"
+    "version":"minor"
 }
