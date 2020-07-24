@@ -19,5 +19,5 @@
     "shortDescription":"A CommandBox module that allow for directoy bookmarking.",
     "slug":"commandbox-bookmarks@aeuans",
     "type":"commandbox-modules",
-    "version":"minor"
+    "version":"0.2.0"
 }
