@@ -11,7 +11,7 @@
     ],
     "location":"euans/commandbox-bookmarks#v0.3.0",
     "name":"bookmarks",
-    "private":true,
+    "private":false,
     "repository":{
         "type":"git",
         "URL":"https://github.com/euans/commandbox-bookmarks"
