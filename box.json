@@ -15,8 +15,8 @@
         "type":"git",
         "URL":"https://github.com/euans/commandbox-bookmarks"
     },
-    "shortDescription":"A CommandBox module that allow for directoy bookmarking.",
+    "shortDescription":"A CommandBox module that allow for directory bookmarking.",
     "slug":"commandbox-bookmarks",
     "type":"commandbox-modules",
-    "version":"0.3.0"
+    "version":"minor"
 }
