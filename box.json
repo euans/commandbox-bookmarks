@@ -11,13 +11,12 @@
     ],
     "location":"euans/commandbox-bookmarks#v0.3.0",
     "name":"bookmarks",
-    "private":false,
     "repository":{
         "type":"git",
         "URL":"https://github.com/euans/commandbox-bookmarks"
     },
     "shortDescription":"A CommandBox module that allow for directoy bookmarking.",
-    "slug":"commandbox-bookmarks@aeuans",
+    "slug":"commandbox-bookmarks",
     "type":"commandbox-modules",
     "version":"0.3.0"
 }
