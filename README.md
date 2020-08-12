@@ -10,32 +10,42 @@ Install bookmarks using commandbox:
 CommandBox> install commandbox-bookmarks
 ```
 
-## List bookmarks - *list existing bookmarks*
+## Bookmark List - *list existing bookmarks*
 
 ```
 CommandBox> bookmark list
 ```
 
-## Add bookmark - *add a new bookmark*
-
+## Bookmark Add (+) - *add a new bookmark*
+**Name** *(optional)* - Defaults to current folder name.
+**Path** *(optional)* - Fully qualified or relative file path *(eg: C:\projects or ../../)*. Defaults to current file path. 
 ```
 CommandBox> bookmark add [name] [path]
-CommandBox> bookmark add 'Home'
-CommandBox> bookmark + 'Home'
+CommandBox> bookmark add Home c:\projects
+CommandBox> bookmark add
+CommandBox> bookmark + 'My Bookmark'
 ```
 
-## Delete bookmark - *delete an existing bookmark*
-
+## Bookmark Delete (-) - *delete an existing bookmark*
+**Name** *(optional)* - Defaults to current folder name.
+**Path** *(optional)* - Fully qualified or relative file path *(eg: C:\projects or ../../)*. Defaults to current file path.
 ```
 CommandBox> bookmark delete [name] [path]
-CommandBox> bookmark delete 'Home'
-CommandBox> bookmark - 'Home'
+CommandBox> bookmark delete Home
+CommandBox> bookmark delete
+CommandBox> bookmark - 'My Bookmark'
 ```
 
-## Goto bookmark - *go to a bookmarked path*
-
+## Bookmark Goto / Goto - *go to a bookmarked path*
+**Name** - Name of bookmark.
 ```
 CommandBox> bookmark goto name
 CommandBox> goto <name>
-CommandBox> goto 'Home'
+CommandBox> goto Home
+```
+
+## Bookmark Clear - *delete all saved bookmarks*
+
+```
+CommandBox> bookmark clear
 ```

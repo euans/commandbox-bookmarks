@@ -19,23 +19,25 @@ component {
  				valueLen = max(valueLen,bookmarks[k].len());
  			}
 
- 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
- 			count = 0;
- 			for ( i in bookmarks ) {
- 				count++;
- 				print
- 					.yellowText('| ')
- 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
- 					.yellowText(':')
- 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
- 					.yellowText(' |')
- 					.line();
- 				
- 				//if ( count < bookmarks.len() ) {
- 				//	print.yellowLine('| ' & repeatString(chr(183), labelLen + valueLen + 3) & ' |');
- 				//}
- 			};
- 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+ 			if ( bookmarks.len() ) {
+ 				print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+	 			count = 0;
+	 			for ( i in bookmarks ) {
+	 				count++;
+	 				print
+	 					.yellowText('| ')
+	 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
+	 					.yellowText(':')
+	 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
+	 					.yellowText(' |')
+	 					.line();
+	 			};
+	 			
+	 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+	 		} else {
+	 			print.text('There are no saved bookmarks.');
+	 		}
+
  		}		
 	}
 }
