@@ -1,6 +1,12 @@
+/**
+* Go to a bookmark. (Change the shells working directory)
+*/
 component aliases="goto" {
-	property name='ConfigService' inject='ConfigService';
 
+	/**
+	* @name Name of bookmark to go to
+	* @name.optionsUDF nameAutoComplete
+	*/
 	function run ( string name='' ) {
 		var configSettings = ConfigService.getconfigSettings();
 		cfparam (name='configSettings.modules["commandbox-bookmarks"].bookmarks', default={});
@@ -10,7 +16,12 @@ component aliases="goto" {
  			command('cd').params(bookmarks[trim(name)]).run();
 
  		} else {
- 			print.redBoldLine( 'Bookmark not found.' );
+ 			error( 'Bookmark not found.' );
  		}		
 	}
+
+	function nameAutoComplete() {
+		return ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} ).keyArray();
+	}
+	
 }
