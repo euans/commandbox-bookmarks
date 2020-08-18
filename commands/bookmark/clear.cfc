@@ -1,5 +1,7 @@
+/**
+* Remove all bookmarks
+*/
 component {
-	property name='ConfigService' inject='ConfigService';
 
 	function run ( ) {
 		var configSettings = ConfigService.getconfigSettings();
