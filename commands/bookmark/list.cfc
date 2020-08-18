@@ -8,7 +8,7 @@
 * {code}
 *
 */
-component {
+component aliases='bookmarks' {
 
 	/**
 	* @name Name of bookmark to list 

@@ -9,7 +9,7 @@
             "URL":"http://opensource.org/licenses/MIT"
         }
     ],
-    "location":"euans/commandbox-bookmarks#v0.5.0",
+    "location":"euans/commandbox-bookmarks#v0.6.0",
     "name":"bookmarks",
     "repository":{
         "type":"git",
