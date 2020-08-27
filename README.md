@@ -1,6 +1,6 @@
 # Bookmarks for CommandBox
 
-Bookmarks allow you to bookmark directories for easy navigation. 
+Bookmarks allow you to bookmark directories for easy navigation.
 
 ## Installation:
 
@@ -48,4 +48,11 @@ CommandBox> goto Home
 
 ```
 CommandBox> bookmark clear
+```
+
+## Bookmarks as a Variable - *ability to refer to a bookmark as a variable*
+**Name** - Name of bookmark.
+```
+CommandBox> echo ${bookmark.<name>}
+CommandBox> echo ${bookmark.Home}
 ```
