@@ -33,20 +33,18 @@ component aliases='bookmarks' {
  			}
 
  			if ( bookmarks.len() ) {
- 				print.yellowLine(repeatString('-', labelLen + valueLen + 7));
-	 			count = 0;
-	 			for ( var i in bookmarks ) {
-	 				count++;
-	 				print
-	 					.yellowText('| ')
-	 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
-	 					.yellowText(':')
-	 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
-	 					.yellowText(' |')
-	 					.line();
-	 			};
-	 			
-	 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+ 				var cwd = getCWD();
+	 			print.table(
+	 				bookmarks.reduce((r,k,v)=>{
+	 					r.append([
+	 						{value:k, options:cwd==v?'yellow':'white'},
+	 						{value:v, options:cwd==v?'yellow':'white'}
+	 					]); 
+	 					return r;
+	 				}, []), 
+	 				'', 
+	 				['Shortcut','Directory Path']
+	 			);
 	 		} else {
 	 			print.text('There are no saved bookmarks.');
 	 		}
