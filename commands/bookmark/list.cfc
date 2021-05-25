@@ -33,18 +33,34 @@ component aliases='bookmarks' {
  			}
 
  			if ( bookmarks.len() ) {
- 				var cwd = getCWD();
-	 			print.table(
-	 				bookmarks.reduce((r,k,v)=>{
-	 					r.append([
-	 						{value:k, options:cwd==v?'yellow':'white'},
-	 						{value:v, options:cwd==v?'yellow':'white'}
-	 					]); 
-	 					return r;
-	 				}, []), 
-	 				'', 
-	 				['Shortcut','Directory Path']
-	 			);
+ 				if ( structKeyExists(print, 'table') ) { // Commandbox 5.3+ 
+	 				var cwd = getCWD();
+		 			print.table(
+		 				bookmarks.reduce((r,k,v)=>{
+		 					r.append([
+		 						{value:k, options:cwd==v?'yellow':'white'},
+		 						{value:v, options:cwd==v?'yellow':'white'}
+		 					]); 
+		 					return r;
+		 				}, []), 
+		 				'', 
+		 				['Shortcut','Directory Path']
+		 			);
+		 		} else { // Legacy support
+		 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+		 			count = 0;
+		 			for ( var i in bookmarks ) {
+		 				count++;
+		 				print
+		 					.yellowText('| ')
+		 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
+		 					.yellowText(':')
+		 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
+		 					.yellowText(' |')
+		 					.line();
+		 			};		 			
+		 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+		 		}
 	 		} else {
 	 			print.text('There are no saved bookmarks.');
 	 		}
