@@ -33,7 +33,7 @@ component aliases='bookmarks' {
  			}
 
  			if ( bookmarks.len() ) {
- 				if ( structKeyExists(print, 'table') ) { // Commandbox 5.3+ 
+ 				if ( structKeyExists(print, 'table') ) {
 	 				var cwd = getCWD();
 		 			print.table(
 		 				bookmarks.reduce((r,k,v)=>{
@@ -46,7 +46,7 @@ component aliases='bookmarks' {
 		 				'', 
 		 				['Shortcut','Directory Path']
 		 			);
-		 		} else { // Legacy support
+		 		} else {
 		 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
 		 			count = 0;
 		 			for ( var i in bookmarks ) {
