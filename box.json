@@ -18,5 +18,5 @@
     "shortDescription":"A CommandBox module that allows for directory bookmarking.",
     "slug":"commandbox-bookmarks",
     "type":"commandbox-modules",
-    "version":"1.1.1"
+    "version":"1.1.2"
 }
