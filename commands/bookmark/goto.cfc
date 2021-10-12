@@ -13,7 +13,13 @@ component aliases="goto" {
 		bookmarks = configSettings.modules['commandbox-bookmarks'].bookmarks;
  		
  		if ( structKeyExists(bookmarks, trim(name)) ) {
- 			command('cd').params(bookmarks[trim(name)]).run();
+			 var commandString = bookmarks[trim(name)];
+			if(directoryExists(commandString)) {
+				command('cd').params(commandString).run();
+			} else {
+				runCommand( commandString );
+			}
+			 
 
  		} else {
  			error( 'Bookmark not found.' );
