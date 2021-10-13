@@ -17,7 +17,7 @@ component aliases="goto" {
 			if(directoryExists(commandString)) {
 				command('cd').params(commandString).run();
 			} else {
-				runCommand( commandString );
+				command( commandString );
 			}
 			 
 
