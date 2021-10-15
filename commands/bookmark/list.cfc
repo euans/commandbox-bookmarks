@@ -23,15 +23,48 @@ component aliases='bookmarks' {
  			print.line(bookmarks[trim(arguments.name)]);
 
  		} else {
-			var bookmarksToTable = bookmarks.keyArray().reduce((acc,x) => {
-				acc.append([x,bookmarks[x]]);
-				return acc;
-			},[])
-			if(bookmarksToTable.len()){
-				print.table(bookmarksToTable,"",['Shortcut','Directory Path/Command']);
-			} else {
-				print.text('There are no saved bookmarks.');
-			}
+ 			labelLen = 0;
+ 			for ( var k in bookmarks ) {
+ 				labelLen = max(labelLen,k.len());
+ 			}
+ 			valueLen = 0;
+ 			for ( var k in bookmarks ) {
+ 				valueLen = max(valueLen,bookmarks[k].len());
+ 			}
+
+ 			if ( bookmarks.len() ) {
+ 				if ( structKeyExists(print, 'table') ) {
+	 				var cwd = getCWD();
+		 			print.table(
+		 				bookmarks.reduce((r,k,v)=>{
+		 					r.append([
+		 						{value:k, options:cwd==v?'yellow':'white'},
+		 						{value:v, options:cwd==v?'yellow':'white'}
+		 					]); 
+		 					return r;
+		 				}, []), 
+		 				'', 
+		 				['Shortcut','Directory Path']
+		 			);
+		 		} else {
+		 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+		 			count = 0;
+		 			for ( var i in bookmarks ) {
+		 				count++;
+		 				print
+		 					.yellowText('| ')
+		 					.boldLimeText(i & repeatString(' ', labelLen-i.len()) & ' ')
+		 					.yellowText(':')
+		 					.text(' ' & bookmarks[i] & repeatString(' ', valueLen - bookmarks[i].len()))
+		 					.yellowText(' |')
+		 					.line();
+		 			};		 			
+		 			print.yellowLine(repeatString('-', labelLen + valueLen + 7));
+		 		}
+	 		} else {
+	 			print.text('There are no saved bookmarks.');
+	 		}
+
  		}		
 	}
 
