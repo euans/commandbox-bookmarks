@@ -1,6 +1,6 @@
 # Bookmarks for CommandBox
 
-Bookmarks allow you to bookmark directories for easy navigation.
+Bookmarks allow you to bookmark directories and commands for easy access.
 
 ## Installation:
 
@@ -19,9 +19,12 @@ CommandBox> bookmark list
 ## Bookmark Add (+) - *add a new bookmark*
 **Name** *(optional)* - Defaults to current folder name.  
 **Path** *(optional)* - Fully qualified or relative file path *(eg: C:\projects or ../../)*. Defaults to current file path.  
+**Lastcommand** *(optional)* - Grabs the last command run from commandbox and stores it to a bookmark 
 ```bash
-CommandBox> bookmark add [name] [path]
+CommandBox> bookmark add [name] [path/command]
 CommandBox> bookmark add Home c:\projects
+CommandBox> bookmark add Home "echo 'hello'"
+CommandBox> bookmark add Home --lastcommand
 CommandBox> bookmark add
 CommandBox> bookmark + 'My Bookmark'
 ```

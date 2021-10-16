@@ -1,8 +1,8 @@
 component {
-
 	function configure () {
 		settings = {
-			bookmarks = {}
+			bookmarks = {},
+			lastcommand = ""
 		};
 	}
 
@@ -20,6 +20,18 @@ component {
 			return true;
 		}
 		
+	}
+
+	function postProcessLine(interceptData){
+		var ConfigService = shell.getConfigService();
+		var configSettings = ConfigService.getconfigSettings();
+		cfparam (name='configSettings.modules["commandbox-bookmarks"].lastcommand', default={});
+		//if not an interal command
+		if(['bookmark','bookmarks','goto'].containsNoCase(listFirst(trim(interceptData.line))) == 0){
+			configSettings.modules["commandbox-bookmarks"]['lastcommand'] = interceptData.line;
+			ConfigService.setConfigSettings( configSettings );
+		}
+		return;
 	}
 
 }
