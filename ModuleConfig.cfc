@@ -29,7 +29,7 @@ component {
 		//if not an interal command
 		if(['bookmark','bookmarks','goto'].containsNoCase(listFirst(trim(interceptData.line))) == 0){
 			configSettings.modules["commandbox-bookmarks"]['lastcommand'] = interceptData.line;
-			ConfigService.setConfigSettings( configSettings );
+			ConfigService.setConfigSettings( configSettings=configSettings, quiet=true );
 		}
 		return;
 	}
