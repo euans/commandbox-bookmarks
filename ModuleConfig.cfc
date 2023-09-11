@@ -1,9 +1,16 @@
 component {
+
 	function configure () {
 		settings = {
-			bookmarks = {},
-			lastcommand = ""
+			bookmarks = {}
 		};
+	}
+
+	function onLoad () {
+		binder
+            .map('bookmarkUtils@commandbox-bookmarks')
+            .to('#moduleMapping#.models.BookmarkUtils')
+            .asSingleton();
 	}
 
 	function onSystemSettingExpansion( struct interceptData ) {
@@ -22,14 +29,11 @@ component {
 		
 	}
 
-	function postProcessLine(interceptData){
-		var ConfigService = shell.getConfigService();
-		var configSettings = ConfigService.getconfigSettings();
-		cfparam (name='configSettings.modules["commandbox-bookmarks"].lastcommand', default={});
+	function postProcessLine( interceptData ) {
+		var bookmarkUtils = wirebox.getInstance('bookmarkUtils@commandbox-bookmarks');
 		//if not an interal command
 		if(['bookmark','bookmarks','goto'].containsNoCase(listFirst(trim(interceptData.line))) == 0){
-			configSettings.modules["commandbox-bookmarks"]['lastcommand'] = interceptData.line;
-			ConfigService.setConfigSettings( configSettings=configSettings, quiet=true );
+			bookmarkUtils.setLastCommand(interceptData.line);
 		}
 		return;
 	}

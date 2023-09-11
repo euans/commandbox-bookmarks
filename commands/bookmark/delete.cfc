@@ -9,9 +9,7 @@ component aliases='bookmark -' {
 	* @name.optionsUDF nameAutoComplete
 	*/
 	function run ( string name, string path=getCWD() ) {
-		var configSettings = ConfigService.getconfigSettings();
-		cfparam (name='configSettings.modules["commandbox-bookmarks"].bookmarks', default={});
-		bookmarks = configSettings.modules['commandbox-bookmarks'].bookmarks;
+		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
  		
 		arguments.path = resolvePath( arguments.path );
 		arguments.name = arguments.name?:listLast(arguments.path, '\/');
@@ -26,7 +24,7 @@ component aliases='bookmark -' {
  			}
  		}	
 
- 		ConfigService.setConfigSettings( configSettings );
+ 		ConfigService.setSetting( name="modules.commandbox-bookmarks.bookmarks", value=serializeJson(bookmarks) );
 
  		print.greenLine('Bookmark Removed.')
 	}

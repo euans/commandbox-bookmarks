@@ -3,17 +3,16 @@
 */
 component aliases='bookmark +' {
 
+	property bookmarkUtils inject="BookmarkUtils@commandbox-bookmarks";
+
 	/**
 	* @name Name of bookmark to add
 	* @path Path to bookmark
 	* @lastcommand Grab last command, if used ignores current path
 	*/
 	function run ( string name, string path=getCWD(), boolean lastcommand=false  ) {
-		var configSettings = ConfigService.getconfigSettings();
-		cfparam (name='configSettings.modules["commandbox-bookmarks"].bookmarks', default={});
-		bookmarks = configSettings.modules['commandbox-bookmarks'].bookmarks;
-		lc = configSettings.modules['commandbox-bookmarks'].lastcommand ?: '';
-
+		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var lc = bookmarkUtils.getLastCommand();
 		if(arguments.lastcommand && lc != ''){
 			arguments.name = arguments.name?:autoIncrementName(bookmarks);
 			bookmarks[trim(arguments.name)] = lc;
@@ -27,8 +26,8 @@ component aliases='bookmark +' {
 				bookmarks[trim(arguments.name)] = arguments.path;
 			}
 		}
-		
-		ConfigService.setConfigSettings( configSettings );
+
+		ConfigService.setSetting( name="modules.commandbox-bookmarks.bookmarks", value=serializeJson(bookmarks) );
 		
 		print.greenLine('Bookmark Saved.')
  	}

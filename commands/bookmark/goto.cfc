@@ -8,9 +8,7 @@ component aliases="goto" {
 	* @name.optionsUDF nameAutoComplete
 	*/
 	function run ( string name='' ) {
-		var configSettings = ConfigService.getconfigSettings();
-		cfparam (name='configSettings.modules["commandbox-bookmarks"].bookmarks', default={});
-		bookmarks = configSettings.modules['commandbox-bookmarks'].bookmarks;
+		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
  		
  		if ( structKeyExists(bookmarks, trim(name)) ) {
 			 var commandString = bookmarks[trim(name)];
