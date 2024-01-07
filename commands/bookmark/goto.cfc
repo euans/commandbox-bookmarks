@@ -1,14 +1,14 @@
 /**
 * Go to a bookmark. (Change the shells working directory)
 */
-component aliases="goto" {
+component extends=_shared aliases="goto" {
 
 	/**
 	* @name Name of bookmark to go to
 	* @name.optionsUDF nameAutoComplete
 	*/
 	function run ( string name='' ) {
-		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var bookmarks = getBookmarks();
  		
  		if ( structKeyExists(bookmarks, trim(name)) ) {
 			 var commandString = bookmarks[trim(name)];
@@ -16,8 +16,7 @@ component aliases="goto" {
 				command('cd').params(commandString).run();
 			} else {
 				command( commandString ).run();
-			}
-			 
+			}			 
 
  		} else {
  			error( 'Bookmark not found.' );
@@ -25,7 +24,7 @@ component aliases="goto" {
 	}
 
 	function nameAutoComplete() {
-		return ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} ).keyArray();
+		return getBookmarks().keyArray();
 	}
 	
 }

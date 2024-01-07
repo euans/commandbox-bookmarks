@@ -2,6 +2,7 @@ component {
 
 	function configure () {
 		settings = {
+			profiles = {},
 			bookmarks = {}
 		};
 	}
@@ -14,12 +15,11 @@ component {
 	}
 
 	function onSystemSettingExpansion( struct interceptData ) {
-		
 		// ${bookmark.name}
 		if( interceptData.setting.lcase().startsWith( 'bookmark.' ) ) {
 			
 			var settingName = interceptData.setting.replaceNoCase( 'bookmark.', '', 'one' );
-			
+
 			interceptData.setting = settings.bookmarks[ settingName ] ?: interceptData.defaultValue;
 						
 			// Stop processing expansions on this setting
@@ -30,9 +30,9 @@ component {
 	}
 
 	function postProcessLine( interceptData ) {
-		var bookmarkUtils = wirebox.getInstance('bookmarkUtils@commandbox-bookmarks');
 		//if not an interal command
 		if(['bookmark','bookmarks','goto'].containsNoCase(listFirst(trim(interceptData.line))) == 0){
+			var bookmarkUtils = wirebox.getInstance('bookmarkUtils@commandbox-bookmarks');
 			bookmarkUtils.setLastCommand(interceptData.line);
 		}
 		return;

@@ -1,7 +1,7 @@
 /**
 * Delete a bookmark
 */
-component aliases='bookmark -' {
+component extends=_shared aliases='bookmark -' {
 
 	/**
 	* @name Name of bookmark to delete
@@ -9,7 +9,7 @@ component aliases='bookmark -' {
 	* @name.optionsUDF nameAutoComplete
 	*/
 	function run ( string name, string path=getCWD() ) {
-		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var bookmarks = getBookmarks();
  		
 		arguments.path = resolvePath( arguments.path );
 		arguments.name = arguments.name?:listLast(arguments.path, '\/');
@@ -24,13 +24,13 @@ component aliases='bookmark -' {
  			}
  		}	
 
- 		ConfigService.setSetting( name="modules.commandbox-bookmarks.bookmarks", value=serializeJson(bookmarks) );
+ 		setBookmarks( bookmarks );;
 
  		print.greenLine('Bookmark Removed.')
 	}
 
 	function nameAutoComplete() {
-		return ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} ).keyArray();
+		return getBookmarks().keyArray();
 	}
 
 }

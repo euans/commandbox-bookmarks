@@ -8,14 +8,14 @@
 * {code}
 *
 */
-component aliases='bookmarks' {
+component extends=_shared aliases='bookmarks' {
 
 	/**
 	* @name Name of bookmark to list 
 	* @name.optionsUDF nameAutoComplete
 	*/
 	function run( string name ) {
-		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var bookmarks = getBookmarks();
 
  		if ( !isNull(arguments.name) ) {
  			print.line(bookmarks[trim(arguments.name)]);
@@ -67,7 +67,7 @@ component aliases='bookmarks' {
 	}
 
     function nameAutoComplete() {
-        return ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} ).keyArray();
+        return getBookmarks().keyArray();
     }
 
 }

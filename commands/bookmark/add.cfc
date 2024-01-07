@@ -1,7 +1,7 @@
 /**
 * Add a new bookmark
 */
-component aliases='bookmark +' {
+component extends=_shared aliases='bookmark +' {
 
 	property bookmarkUtils inject="BookmarkUtils@commandbox-bookmarks";
 
@@ -11,7 +11,7 @@ component aliases='bookmark +' {
 	* @lastcommand Grab last command, if used ignores current path
 	*/
 	function run ( string name, string path=getCWD(), boolean lastcommand=false  ) {
-		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var bookmarks = getBookmarks();
 		var lc = bookmarkUtils.getLastCommand();
 		if(arguments.lastcommand && lc != ''){
 			arguments.name = arguments.name?:autoIncrementName(bookmarks);
@@ -27,7 +27,7 @@ component aliases='bookmark +' {
 			}
 		}
 
-		ConfigService.setSetting( name="modules.commandbox-bookmarks.bookmarks", value=serializeJson(bookmarks) );
+		setBookmarks( bookmarks );
 		
 		print.greenLine('Bookmark Saved.')
  	}
