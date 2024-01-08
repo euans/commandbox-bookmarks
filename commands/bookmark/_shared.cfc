@@ -4,7 +4,7 @@ component {
 
 	function getProfile () {
         if ( !bookmarkUtils.getProfile().len() ) {
-            bookmarkUtils.setProfile(SystemSettings.getSystemSetting('commandbox_profile', 'default'));
+            bookmarkUtils.setProfile(SystemSettings.getSystemSetting('commandbox_bookmarks_profile', 'default'));
         }        
         return bookmarkUtils.getProfile();
     }

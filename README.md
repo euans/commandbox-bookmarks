@@ -42,7 +42,7 @@ CommandBox> bookmark - 'My Bookmark'
 ## Bookmark Goto / Goto - *go to a bookmarked path*
 **Name** - Name of bookmark.  
 ```bash
-CommandBox> bookmark goto name
+CommandBox> bookmark goto <name>
 CommandBox> goto <name>
 CommandBox> goto Home
 ```
@@ -51,6 +51,21 @@ CommandBox> goto Home
 
 ```bash
 CommandBox> bookmark clear
+```
+
+## Bookmark Profile - *switch between profiles*
+**Name** *(optional)* - Defaults to *default*. 
+```bash
+CommandBox> bookmark profile <name>
+CommandBox> bookmark profile foo
+```
+
+## Default Bookmark Profile - *<root of 'box' binary>/commandbox.properties*
+*This is handy if you use ForgeBox to sync between different environments with different directory structures.*
+
+**Name** *(optional)* - Defaults to *default* if not included.  
+```bash
+commandbox_bookmarks_profile=<name>
 ```
 
 ## Bookmarks as a Variable - *ability to refer to a bookmark as a variable*
