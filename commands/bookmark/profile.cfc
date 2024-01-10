@@ -12,7 +12,7 @@ component extends=_shared {
 	function run ( string name='default' ) {
  		arguments.name = trim(name);
 
- 		if ( getProfile().lCase() == name.lCase() ) {
+ 		if ( getProfile() == name ) {
  			print.greenLine( 'Your working profile was already set to ' & name );
 
  		} else if ( name == 'default' || structKeyExists(getProfiles(), name) ) {

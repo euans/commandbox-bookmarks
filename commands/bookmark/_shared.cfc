@@ -20,8 +20,7 @@ component {
 
     function setBookmarks ( struct bookmarks={} ) {
         var profile = getProfile().trim() == 'default'? '' : '.profiles.' & getProfile(); 
-        ConfigService.setSetting( name='modules.commandbox-bookmarks' & profile & '.bookmarks', value=serializeJson(arguments.bookmarks) );
-        
+        ConfigService.setSetting( name='modules.commandbox-bookmarks' & profile & '.bookmarks', value=serializeJson(arguments.bookmarks) );        
         this;
     }
 }
