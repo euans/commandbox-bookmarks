@@ -2,9 +2,24 @@ component {
 
     property bookmarkUtils inject="BookmarkUtils@commandbox-bookmarks";
 
-	function getProfile () {
+	function getDefaultProfile () {
+        var profile = SystemSettings.getSystemSetting('commandbox_bookmarks_profile', 'default').trim();
+        if ( profile == 'system.user' ) {
+            profile = SystemSettings.getSystemSetting('user.name', 'default').trim();
+            if ( profile != 'default' &&
+                 !getProfiles().keyExists(profile) ) {
+                var bookmarks = getBookmarks('default');
+                if ( bookmarks.count() ) {
+                    setBookmarks(bookmarks, profile);
+                }
+            }
+        }
+        return profile;
+    }
+
+    function getProfile () {
         if ( !bookmarkUtils.getProfile().len() ) {
-            bookmarkUtils.setProfile(SystemSettings.getSystemSetting('commandbox_bookmarks_profile', 'default'));
+            bookmarkUtils.setProfile(getDefaultProfile());
         }        
         return bookmarkUtils.getProfile();
     }
@@ -13,14 +28,14 @@ component {
         return ConfigService.getSetting( 'modules.commandbox-bookmarks.profiles', {'default':{'bookmarks':{}}} );
     }
 
-    function getBookmarks () {
-        var profile = getProfile().trim() == 'default'? '' : '.profiles.' & getProfile(); 
+    function getBookmarks ( string profile=getProfile() ) {
+        var profile = arguments.profile == 'default'? '' : '.profiles.' & arguments.profile; 
         return ConfigService.getSetting( 'modules.commandbox-bookmarks' & profile & '.bookmarks', {} );
     }
 
-    function setBookmarks ( struct bookmarks={} ) {
-        var profile = getProfile().trim() == 'default'? '' : '.profiles.' & getProfile(); 
-        ConfigService.setSetting( name='modules.commandbox-bookmarks' & profile & '.bookmarks', value=serializeJson(arguments.bookmarks) );        
+    function setBookmarks ( struct bookmarks={}, string profile=getProfile() ) {
+        var profile = arguments.profile == 'default'? '' : '.profiles.' & arguments.profile; 
+        ConfigService.setSetting( name='modules.commandbox-bookmarks' & profile & '.bookmarks', value=serializeJson(arguments.bookmarks) );                  
         this;
     }
 }

@@ -63,9 +63,10 @@ CommandBox> bookmark profile foo
 ## Default Bookmark Profile - *<root of 'box' binary>/commandbox.properties*
 *This is handy if you use ForgeBox to sync between different environments with different directory structures.*
 
-**Name** *(optional)* - Defaults to *default* if not included.  
+**Name** *(optional)* - Defaults to *default* if not included. If you set the Name to *'system.user'*, the active system account name will be used.
 ```bash
 commandbox_bookmarks_profile=<name>
+commandbox_bookmarks_profile=system.user
 ```
 
 ## Bookmarks as a Variable - *ability to refer to a bookmark as a variable*
