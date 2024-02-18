@@ -1,14 +1,14 @@
 /**
 * Remove all bookmarks
 */
-component {
+component extends=_shared {
 
 	function run ( ) {
-		var bookmarks = ConfigService.getSetting( 'modules.commandbox-bookmarks.bookmarks', {} );
+		var bookmarks = getBookmarks();
  		
  		if ( confirm('Are you sure you want to remove all bookmarks?') ) {
  			structClear(bookmarks);
- 			ConfigService.setSetting( name="modules.commandbox-bookmarks.bookmarks", value=serializeJson(bookmarks) );
+ 			setBookmarks( bookmarks );
  			print.greenLine('Bookmarks Cleared.');
  		}
  		
